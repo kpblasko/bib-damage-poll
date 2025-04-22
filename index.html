@@ -53,6 +53,21 @@
     #save-btn:hover {
       background-color: #008a55;
     }
+
+    #confirmation {
+      display: none;
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #00aa66;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 6px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      font-size: 16px;
+      z-index: 1000;
+    }
   </style>
 </head>
 <body>
@@ -88,9 +103,7 @@
 
   <button id="save-btn">Save</button>
   
-  <div id="confirmation" style="display:none; text-align:center; margin-top:20px; font-size:18px; color:green;">
-  ✅ Response recorded!
-</div>
+  <div id="confirmation">✅ Response recorded!</div>
 
   <script>
   document.getElementById("save-btn").addEventListener("click", () => {
