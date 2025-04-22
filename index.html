@@ -102,6 +102,35 @@
       });
     });
   </script>
+<div id="confirmation" style="display:none; text-align:center; margin-top:20px; font-size:18px; color:green;">
+  ✅ Response recorded!
+</div>
 
+  <!-- Below section displays the "Response Recorded" message -->
+
+<script>
+  document.getElementById("save-btn").addEventListener("click", () => {
+    const selectedZones = Array.from(document.querySelectorAll(".zone.active")).map(el => el.id);
+    const formData = new URLSearchParams();
+    formData.append("zones", selectedZones.join(","));
+
+    fetch("https://script.google.com/macros/s/AKfycbxgh9PA92OVsj3air0PlQ_MWSDVdlDYF0W4DF4Eamk5pt6XMKSMjSIRWM8LDKkdg4ID/exec", {
+      method: "POST",
+      mode: "no-cors",
+      body: formData
+    });
+
+    // Show confirmation message
+    const confirmation = document.getElementById("confirmation");
+    confirmation.style.display = "block";
+
+    // Optionally hide it again after a few seconds:
+    setTimeout(() => {
+      confirmation.style.display = "none";
+    }, 4000);
+  });
+</script>
+
+  
 </body>
 </html>
