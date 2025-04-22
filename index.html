@@ -87,21 +87,33 @@
   </svg>
 
   <button id="save-btn">Save</button>
+  
+  <div id="confirmation" style="display:none; text-align:center; margin-top:20px; font-size:18px; color:green;">
+  ✅ Response recorded!
+</div>
 
   <script>
-    document.getElementById("save-btn").addEventListener("click", () => {
-      const selectedZones = Array.from(document.querySelectorAll(".zone.active")).map(el => el.id);
-      
-      const formData = new URLSearchParams();
-      formData.append("zones", selectedZones.join(","));
+  document.getElementById("save-btn").addEventListener("click", () => {
+    const selectedZones = Array.from(document.querySelectorAll(".zone.active")).map(el => el.id);
+    
+    const formData = new URLSearchParams();
+    formData.append("zones", selectedZones.join(","));
 
-      fetch("https://script.google.com/macros/s/AKfycbyQvSgfbODHsxQlOvjMlsHyG4MMvOnBd6sk1NGsGjTXXclJ2TfU_XGFQl0TsEjV_5zR/exec", {
-        method: "POST",
-        mode: "no-cors",
-        body: formData
-      });
+    fetch("https://script.google.com/macros/s/AKfycbyQvSgfbODHsxQlOvjMlsHyG4MMvOnBd6sk1NGsGjTXXclJ2TfU_XGFQl0TsEjV_5zR/exec", {
+      method: "POST",
+      mode: "no-cors",
+      body: formData
     });
-  </script>
+
+    // ✅ Show confirmation popup
+    const confirmation = document.getElementById("confirmation");
+    confirmation.style.display = "block";
+
+    setTimeout(() => {
+      confirmation.style.display = "none";
+    }, 4000);
+  });
+</script>
 
 </body>
 </html>
