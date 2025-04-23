@@ -166,31 +166,31 @@
     formData.append("zones", selectedZones.join(","));
     formData.append("ip", userIP);
     
-     fetch("https://script.google.com/macros/s/AKfycbwF9Y7vKml_q4ATSOwnNbvfCC2_dn0fScB8Y-49enPOyLNtU5VwFgiPSaEq5cjNdDeY/exec", {
-   method: "POST",
-   mode: "cors",
-   headers: { "Accept": "text/plain" },
-   body: formData
-   })
-   .then(response => response.text())
-   .then(text => {
-     if (text === "LIMIT_REACHED") {
-       const limitPopup = document.getElementById("limit-reached");
-       limitPopup.classList.add("show");
-       setTimeout(() => limitPopup.classList.remove("show"), 4000);
-       return;
-     }
+    fetch("https://script.google.com/macros/s/AKfycbwF9Y7vKml_q4ATSOwnNbvfCC2_dn0fScB8Y-49enPOyLNtU5VwFgiPSaEq5cjNdDeY/exec", {
+  method: "POST",
+  mode: "cors",
+  headers: { "Accept": "text/plain" },
+  body: formData
+})
+.then(response => response.text())
+.then(text => {
+  console.log("Server response:", text); // ✅ Debugging
+  if (text.trim() === "LIMIT_REACHED") {
+    const limitPopup = document.getElementById("limit-reached");
+    limitPopup.classList.add("show");
+    setTimeout(() => limitPopup.classList.remove("show"), 4000);
+    return;
+  }
 
-      const confirmation = document.getElementById("confirmation");
-      confirmation.style.display = "block";
-      setTimeout(() => {
-        confirmation.style.display = "none";
-      }, 4000);
+  const confirmation = document.getElementById("confirmation");
+  confirmation.style.display = "block";
+  setTimeout(() => {
+    confirmation.style.display = "none";
+  }, 4000);
 
-      hasSubmitted = true;
-      document.getElementById("save-btn").style.opacity = "0.6";
-   });
-  });
+  hasSubmitted = true;
+  document.getElementById("save-btn").style.opacity = "0.6";
+});
 
   // ✅ Clear button functionality
   document.getElementById("clear-btn").addEventListener("click", () => {
