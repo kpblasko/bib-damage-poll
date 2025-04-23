@@ -109,10 +109,10 @@
     const formData = new URLSearchParams();
     formData.append("zones", selectedZones.join(","));
 
-    fetch("https://script.google.com/macros/s/your-script-url/exec", {
-      method: "POST",
-      mode: "no-cors",
-      body: formData
+    fetch("https://script.google.com/macros/s/AKfycbyQvSgfbODHsxQlOvjMlsHyG4MMvOnBd6sk1NGsGjTXXclJ2TfU_XGFQl0TsEjV_5zR/exec", {
+        method: "POST",
+        mode: "no-cors",
+        body: formData
     });
 
     const confirmation = document.getElementById("confirmation");
