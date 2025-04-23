@@ -123,6 +123,12 @@ let hasSubmitted = false;
 // Send duplicate log to spreadsheet
     const formData = new URLSearchParams();
     formData.append("zones", "Duplicate Submission Attempted");
+
+    fetch("https://script.google.com/macros/s/AKfycbyQvSgfbODHsxQlOvjMlsHyG4MMvOnBd6sk1NGsGjTXXclJ2TfU_XGFQl0TsEjV_5zR/exec", {
+        method: "POST",
+        mode: "no-cors",
+        body: formData
+      });
       
     const already = document.getElementById("already-recorded");
     already.style.display = "block";
