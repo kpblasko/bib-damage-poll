@@ -112,9 +112,18 @@
 <div id="already-recorded" class="popup">⚠️ Response already recorded!</div>
 
 <script>
-  // Save button functionality
-let hasSubmitted = false;
+  let userIP = "";
+
+   fetch("https://api.ipify.org?format=json")
+     .then(res => res.json())
+     .then(data => {
+       userIP = data.ip;
+       console.log("Fetched IP:", userIP); // optional debug
+     });
   
+  // Save button functionality
+  let hasSubmitted = false;
+
   document.getElementById("save-btn").addEventListener("click", () => {
     if (hasSubmitted) {
     // 🟥 Show red warning popup
@@ -123,8 +132,9 @@ let hasSubmitted = false;
 // Send duplicate log to spreadsheet
     const formData = new URLSearchParams();
     formData.append("zones", "Duplicate Submission Attempted");
+    formData.append("ip", userIP);
 
-    fetch("https://script.google.com/macros/s/AKfycbyQvSgfbODHsxQlOvjMlsHyG4MMvOnBd6sk1NGsGjTXXclJ2TfU_XGFQl0TsEjV_5zR/exec", {
+    fetch("https://script.google.com/macros/s/AKfycbxhlTSf2X-GSpzk1_jawtwjqtTB_UJqCnPIDGpYlKRoGU0LSBejGkUCR_Z5TZYt6KkS/exec", {
         method: "POST",
         mode: "no-cors",
         body: formData
@@ -141,8 +151,9 @@ let hasSubmitted = false;
     const selectedZones = Array.from(document.querySelectorAll(".zone.active")).map(el => el.id);
     const formData = new URLSearchParams();
     formData.append("zones", selectedZones.join(","));
-
-    fetch("https://script.google.com/macros/s/AKfycbyQvSgfbODHsxQlOvjMlsHyG4MMvOnBd6sk1NGsGjTXXclJ2TfU_XGFQl0TsEjV_5zR/exec", {
+    formData.append("ip", userIP);
+    
+    fetch("https://script.google.com/macros/s/AKfycbxhlTSf2X-GSpzk1_jawtwjqtTB_UJqCnPIDGpYlKRoGU0LSBejGkUCR_Z5TZYt6KkS/exec", {
         method: "POST",
         mode: "no-cors",
         body: formData
