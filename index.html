@@ -144,14 +144,14 @@ let hasSubmitted = false;
     }, 4000);
     
     hasSubmitted = true;
-    document.getElementById("save-btn").disabled = true;
+    document.getElementById("save-btn").style.opacity = "0.6";
   });
 
   // ✅ Clear button functionality
   document.getElementById("clear-btn").addEventListener("click", () => {
     document.querySelectorAll(".zone.active").forEach(el => el.classList.remove("active"));
     hasSubmitted = false;
-    document.getElementById("save-btn").disabled = false;
+    document.getElementById("save-btn").style.opacity = "1";
   });
 </script>
 
