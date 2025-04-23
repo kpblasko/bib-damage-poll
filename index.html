@@ -118,6 +118,7 @@ let hasSubmitted = false;
   document.getElementById("save-btn").addEventListener("click", () => {
     if (hasSubmitted) {
     // 🟥 Show red warning popup
+    console.log("Already submitted — showing warning popup");
     const already = document.getElementById("already-recorded");
     already.style.display = "block";
     setTimeout(() => {
