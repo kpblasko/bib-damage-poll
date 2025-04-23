@@ -147,7 +147,7 @@
     formData.append("zones", "Duplicate Submission Attempted");
     formData.append("ip", userIP);
 
-    fetch("https://script.google.com/macros/s/AKfycbxPwxfdX34-QUBbqs3M8GBhKR84uAHvwJs_9NsFEpVWDkyJbnNy5INiW24m3GRxPykZ/exec", {
+    fetch("https://script.google.com/macros/s/AKfycbx2Ad6n1PfSD8CVibpbZbjiLjt5EAm-FvXskiS4ExI_5_8PMF9byqk29Jzp5eIMYvWV/exec", {
         method: "POST",
         mode: "no-cors",
         body: formData
@@ -166,7 +166,7 @@
     formData.append("zones", selectedZones.join(","));
     formData.append("ip", userIP);
     
-     fetch("https://script.google.com/macros/s/AKfycbxPwxfdX34-QUBbqs3M8GBhKR84uAHvwJs_9NsFEpVWDkyJbnNy5INiW24m3GRxPykZ/exec", {
+     fetch("https://script.google.com/macros/s/AKfycbx2Ad6n1PfSD8CVibpbZbjiLjt5EAm-FvXskiS4ExI_5_8PMF9byqk29Jzp5eIMYvWV/exec", {
    method: "POST",
    body: formData
    })
