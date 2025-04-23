@@ -104,7 +104,11 @@
 
 <script>
   // Save button functionality
+let hasSubmitted = false;
+  
   document.getElementById("save-btn").addEventListener("click", () => {
+    if (hasSubmitted) return; // 🚫 prevent double submission
+    
     const selectedZones = Array.from(document.querySelectorAll(".zone.active")).map(el => el.id);
     const formData = new URLSearchParams();
     formData.append("zones", selectedZones.join(","));
@@ -120,11 +124,16 @@
     setTimeout(() => {
       confirmation.style.display = "none";
     }, 4000);
+    
+    hasSubmitted = true;
+    document.getElementById("save-btn").disabled = true;
   });
 
   // ✅ Clear button functionality
   document.getElementById("clear-btn").addEventListener("click", () => {
     document.querySelectorAll(".zone.active").forEach(el => el.classList.remove("active"));
+    hasSubmitted = false;
+    document.getElementById("save-btn").disabled = false;
   });
 </script>
 
