@@ -166,30 +166,28 @@
     formData.append("zones", selectedZones.join(","));
     formData.append("ip", userIP);
     
-    fetch("https://script.google.com/macros/s/AKfycbxPwxfdX34-QUBbqs3M8GBhKR84uAHvwJs_9NsFEpVWDkyJbnNy5INiW24m3GRxPykZ/exec", {
-        method: "POST",
-        mode: "no-cors",
-        body: formData
-    });
-    
-    .then(response => response.text())
-    .then(text => {
-      if (text === "LIMIT_REACHED") {
-        // 🔴 Show limit reached popup
-        const limitPopup = document.getElementById("limit-reached");
-        limitPopup.classList.add("show");
-        setTimeout(() => limitPopup.classList.remove("show"), 4000);
-        return;
-      }
-    
-    const confirmation = document.getElementById("confirmation");
-    confirmation.style.display = "block";
-    setTimeout(() => {
-      confirmation.style.display = "none";
-    }, 4000);
-    
-    hasSubmitted = true;
-    document.getElementById("save-btn").style.opacity = "0.6";
+     fetch("https://script.google.com/macros/s/AKfycbxPwxfdX34-QUBbqs3M8GBhKR84uAHvwJs_9NsFEpVWDkyJbnNy5INiW24m3GRxPykZ/exec", {
+   method: "POST",
+   body: formData
+   })
+   .then(response => response.text())
+   .then(text => {
+     if (text === "LIMIT_REACHED") {
+       const limitPopup = document.getElementById("limit-reached");
+       limitPopup.classList.add("show");
+       setTimeout(() => limitPopup.classList.remove("show"), 4000);
+       return;
+     }
+
+      const confirmation = document.getElementById("confirmation");
+      confirmation.style.display = "block";
+      setTimeout(() => {
+        confirmation.style.display = "none";
+      }, 4000);
+
+      hasSubmitted = true;
+      document.getElementById("save-btn").style.opacity = "0.6";
+   });
   });
 
   // ✅ Clear button functionality
