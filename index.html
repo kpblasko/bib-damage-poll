@@ -168,6 +168,8 @@
     
      fetch("https://script.google.com/macros/s/AKfycbwF9Y7vKml_q4ATSOwnNbvfCC2_dn0fScB8Y-49enPOyLNtU5VwFgiPSaEq5cjNdDeY/exec", {
    method: "POST",
+   mode: "cors",
+   headers: { "Accept": "text/plain" },
    body: formData
    })
    .then(response => response.text())
