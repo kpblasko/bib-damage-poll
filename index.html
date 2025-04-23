@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Bib Short Crash Damage Poll (Save Response)</title>
+  <title>Bib Short Crash Damage Poll</title>
   <style>
     body {
       font-family: sans-serif;
@@ -102,12 +102,24 @@
 
 <div id="confirmation">✅ Response recorded!</div>
 
+  <div id="already-recorded" style="display:none; text-align:center; margin-top:20px; font-size:18px; color:#cc3333;">
+  ⚠️ Response already recorded!
+</div>
+
 <script>
   // Save button functionality
 let hasSubmitted = false;
   
   document.getElementById("save-btn").addEventListener("click", () => {
-    if (hasSubmitted) return; // 🚫 prevent double submission
+    if (hasSubmitted) {
+    // 🟥 Show red warning popup
+    const already = document.getElementById("already-recorded");
+    already.style.display = "block";
+    setTimeout(() => {
+      already.style.display = "none";
+    }, 4000);
+    return;
+  }
     
     const selectedZones = Array.from(document.querySelectorAll(".zone.active")).map(el => el.id);
     const formData = new URLSearchParams();
