@@ -119,6 +119,11 @@ let hasSubmitted = false;
     if (hasSubmitted) {
     // 🟥 Show red warning popup
     console.log("Already submitted — showing warning popup");
+
+// Send duplicate log to spreadsheet
+    const formData = new URLSearchParams();
+    formData.append("zones", "Duplicate Submission Attempted");
+      
     const already = document.getElementById("already-recorded");
     already.style.display = "block";
     setTimeout(() => {
