@@ -76,6 +76,18 @@
   background: #cc3333;
   color: white;
 }
+
+ #limit-reached {
+ background: #cc3333;
+ color: white;
+ }
+    
+    .popup.show {
+  display: block;
+  opacity: 1;
+  pointer-events: auto;
+}
+    
   </style>
 </head>
 <body>
@@ -110,7 +122,8 @@
 
 <div id="confirmation" class="popup">✅ Response recorded!</div>
 <div id="already-recorded" class="popup">⚠️ Response already recorded!</div>
-
+<div id="limit-reached" class="popup">⚠️ Maximum submissions recorded</div>
+  
 <script>
   let userIP = "";
 
@@ -134,7 +147,7 @@
     formData.append("zones", "Duplicate Submission Attempted");
     formData.append("ip", userIP);
 
-    fetch("https://script.google.com/macros/s/AKfycbxhlTSf2X-GSpzk1_jawtwjqtTB_UJqCnPIDGpYlKRoGU0LSBejGkUCR_Z5TZYt6KkS/exec", {
+    fetch("https://script.google.com/macros/s/AKfycbxPwxfdX34-QUBbqs3M8GBhKR84uAHvwJs_9NsFEpVWDkyJbnNy5INiW24m3GRxPykZ/exec", {
         method: "POST",
         mode: "no-cors",
         body: formData
@@ -153,12 +166,22 @@
     formData.append("zones", selectedZones.join(","));
     formData.append("ip", userIP);
     
-    fetch("https://script.google.com/macros/s/AKfycbxhlTSf2X-GSpzk1_jawtwjqtTB_UJqCnPIDGpYlKRoGU0LSBejGkUCR_Z5TZYt6KkS/exec", {
+    fetch("https://script.google.com/macros/s/AKfycbxPwxfdX34-QUBbqs3M8GBhKR84uAHvwJs_9NsFEpVWDkyJbnNy5INiW24m3GRxPykZ/exec", {
         method: "POST",
         mode: "no-cors",
         body: formData
     });
-
+    
+    .then(response => response.text())
+    .then(text => {
+      if (text === "LIMIT_REACHED") {
+        // 🔴 Show limit reached popup
+        const limitPopup = document.getElementById("limit-reached");
+        limitPopup.classList.add("show");
+        setTimeout(() => limitPopup.classList.remove("show"), 4000);
+        return;
+      }
+    
     const confirmation = document.getElementById("confirmation");
     confirmation.style.display = "block";
     setTimeout(() => {
