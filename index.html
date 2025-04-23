@@ -97,30 +97,34 @@
 <path d="M 251.493 676.165 L 259.714 654.362 L 260.432 633.703 L 256.863 606.746 L 301.723 582.18 L 317.135 622.93 L 327.167 654.953 L 329.772 677.067 L 251.493 676.165 Z" class="zone" id="Side-Right-Upper-Thigh" onclick="this.classList.toggle('active')" />
   </svg>
 
-  <button id="save-btn">Save</button>
-  
-  <div id="confirmation">✅ Response recorded!</div>
+<button id="clear-btn" style="margin-right: 12px;">Clear</button>
+<button id="save-btn">Save</button>
 
-  <script>
+<div id="confirmation">✅ Response recorded!</div>
+
+<script>
+  // Save button functionality
   document.getElementById("save-btn").addEventListener("click", () => {
     const selectedZones = Array.from(document.querySelectorAll(".zone.active")).map(el => el.id);
-    
     const formData = new URLSearchParams();
     formData.append("zones", selectedZones.join(","));
 
-    fetch("https://script.google.com/macros/s/AKfycbyQvSgfbODHsxQlOvjMlsHyG4MMvOnBd6sk1NGsGjTXXclJ2TfU_XGFQl0TsEjV_5zR/exec", {
+    fetch("https://script.google.com/macros/s/your-script-url/exec", {
       method: "POST",
       mode: "no-cors",
       body: formData
     });
 
-    // ✅ Show confirmation popup
     const confirmation = document.getElementById("confirmation");
     confirmation.style.display = "block";
-
     setTimeout(() => {
       confirmation.style.display = "none";
     }, 4000);
+  });
+
+  // ✅ Clear button functionality
+  document.getElementById("clear-btn").addEventListener("click", () => {
+    document.querySelectorAll(".zone.active").forEach(el => el.classList.remove("active"));
   });
 </script>
 
