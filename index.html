@@ -195,10 +195,11 @@
       if (comment.length > 0) {
         console.log("Submitting comment:", comment);
         formData.append("comment", comment);
-        else
+      }
+      else {
           console.log("No Comment:", comment);
       }
-
+      
     fetch("https://script.google.com/macros/s/AKfycbwaSQROYXpq_ttOX2wZ-eOXUrzKByo7ZPtqp2s84ORZLYn9y9yg9Fv2-1GaT-gbrJ5O/exec", {
         method: "POST",
         mode: "no-cors",
