@@ -46,14 +46,14 @@
       fill-opacity: 0.4;
     }
 
-    .zone:not(.active) {
-      fill-opacity: 0;  /* ✅ Force opacity reset */
+    .zone:not(.active):not(:hover) {
+      fill-opacity: 0;
     }
 
     .zone:focus,
     .zone:active {
     outline: none;
-    fill: transparent;
+    fill-opacity: 0.2;
     }
 
     #save-btn {
