@@ -105,7 +105,7 @@
 
   <svg viewBox="0 0 1536 1024" xmlns="http://www.w3.org/2000/svg">
     <image href="bibdamage2.png" x="0" y="0" width="1536" height="1024" />
-<path id="R1" d="M 75.832 604.225 L 158.184 604.341 L 160 623.324 L 168.518 644.201 L 180.959 664.792 L 97.967 668.554 L 85.944 639.834 L 75.832 604.225 Z" class="zone" onclick="this.classList.toggle('active'); this.setAttribute('d', this.getAttribute('d'));" />
+<path id="R1" d="M 75.832 604.225 L 158.184 604.341 L 160 623.324 L 168.518 644.201 L 180.959 664.792 L 97.967 668.554 L 85.944 639.834 L 75.832 604.225 Z" class="zone" onclick="this.classList.toggle('active'); requestAnimationFrame(() => this.style.transform = 'scale(1)');" />
 <path id="R2" d="M 122.012 730.67 L 203.497 710.633 L 193.396 686.108 L 181.445 665.977 L 98.635 669.89 L 113.997 705.958 L 122.012 730.67 Z" class="zone" onclick="this.classList.toggle('active')" />
 <path id="R3" d="M 122.492 732.111 L 203.768 711.875 L 214.388 740.518 L 222.85 771.755 L 228.022 804.743 L 134.034 810.086 L 129.342 766.909 L 122.492 732.111 Z" class="zone" onclick="this.classList.toggle('active')" />
 <path id="R4" d="M 134.376 811.488 L 228.911 806.316 L 231.55 842.88 L 230.678 879.427 L 139.24 881.757 L 134.376 811.488 Z" class="zone" onclick="this.classList.toggle('active')" />
